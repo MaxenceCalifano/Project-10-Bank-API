@@ -1,0 +1,11 @@
+header {
+    padding: 1rem;
+}
+
+.argent {
+    color: var(--primary-color);
+}
+
+.bank {
+    color: var(--darker-primary);
+}
