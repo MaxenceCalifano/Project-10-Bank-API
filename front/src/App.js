@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Root from './Pages/Root';
 import Home from './Pages/Home';
 import ErrorPage from './Pages/ErrorPage';
