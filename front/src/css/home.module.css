@@ -27,3 +27,31 @@
     margin-bottom: 0;
     font-size: 0.9rem;
 }
+
+.features {
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 920px) {
+    .hero {
+        height: 400px;
+        background-position: 0% 33%;
+    }
+
+    .heroContent {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 300px;
+        margin: 2rem;
+    }
+
+    .heroContent .subtitle {
+        font-size: 1.5rem;
+    }
+
+    .heroContent .text {
+        font-size: 1.2rem;
+    }
+}
