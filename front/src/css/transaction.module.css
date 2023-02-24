@@ -1,0 +1,22 @@
+.mainContent {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    transition: all ease 300ms;
+
+}
+
+.wrapper {
+    background-color: white;
+    padding: 5px;
+}
+
+.arrow {
+    transform: rotate(180deg);
+    transition: all ease 300ms;
+}
+
+.arrowClosed {
+    transform: rotate(0deg);
+    transition: all ease 300ms;
+}

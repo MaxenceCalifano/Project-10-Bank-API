@@ -1,6 +1,7 @@
 import Account from '../components/Account';
 import styles from '../css/user.module.css'
 import { useState } from 'react';
+import Transaction from '../components/TransactionDropdown';
 
 function User() {
     const [editName, toggleEdit] = useState(false);
@@ -20,6 +21,7 @@ function User() {
                     </>
             }
             <Account />
+            <Transaction />
         </main>
     );
 }
