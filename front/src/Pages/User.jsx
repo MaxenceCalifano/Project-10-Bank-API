@@ -7,10 +7,10 @@ function User() {
 
     return (
         <main className={styles.main}>
-            <h1>Welcome back {/*user */}!</h1>
+            <h1 className={styles.h1}>Welcome back {/*user */}!</h1>
             {
                 !editName ?
-                    <button onClick={() => toggleEdit(true)}>Edit Name</button>
+                    <button className={styles.editButton} onClick={() => toggleEdit(true)}>Edit Name</button>
                     :
                     <>
                         <input type="text" />
