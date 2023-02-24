@@ -2,6 +2,7 @@ import React from 'react';
 import Root from './Pages/Root';
 import Home from './Pages/Home';
 import ErrorPage from './Pages/ErrorPage';
+import SignIn from './Pages/Sign-in';
 
 import {
   createBrowserRouter,
@@ -17,10 +18,11 @@ const router = createBrowserRouter([
         path:"/",
         element:<Home />
       },
-     /*  {
-        path:"/about",
-        element: <About />
+      {
+        path:"/sign-in",
+        element: <SignIn />
       },
+      /*
       {
         path:"/accommodation/:id",
         element: <Accommodation />

@@ -3,6 +3,8 @@
 :root {
   --primary-color: #00bb77;
   --darker-primary: #004b24;
+  --background-black: #12002b;
+  --text-color: #2c3e50;
 }
 
 body {
@@ -12,7 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: var(--text-color);
 }
 
 code {

@@ -3,8 +3,15 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 function Root() {
+    const styles = {
+        body: {
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh'
+        }
+    }
     return (
-        <div>
+        <div style={styles.body}>
             <Header />
             <Outlet />
             <Footer />
