@@ -1,5 +1,6 @@
 import styles from '../css/signIn.module.css'
 import userCircle from '../assets/account_circle.svg'
+import { Link } from 'react-router-dom'
 
 import { useState } from 'react'
 
@@ -35,8 +36,10 @@ function SignIn() {
                     <div className={styles.inputRemember}>
                         <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
                     </div>
-                    <button formNoValidate onClick={login} className={styles.signInButton}>Sign In</button>
+                    <button onClick={login} className={styles.signInButton}>Sign In</button>
+                    <Link to={'/sign-up'}>No account ?</Link>
                 </form>
+
             </section>
         </main>
     );
