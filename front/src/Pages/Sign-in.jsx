@@ -1,6 +1,6 @@
 import styles from '../css/signIn.module.css'
 import userCircle from '../assets/account_circle.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useState } from 'react'
 
@@ -8,6 +8,9 @@ function SignIn() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [responseMessage, setResponseMessage] = useState('')
+
+    const navigate = useNavigate();
 
     const login = (e) => {
         e.preventDefault()
@@ -19,6 +22,20 @@ function SignIn() {
                 "password": password
             })
         })
+            .then(res => {
+                if (res.ok) {
+                    res.json()
+                        .then(value => {
+                            console.log(value)
+                            localStorage.setItem("user", value.body.token)
+                            return navigate("/user")
+                        })
+                }
+                else {
+                    setResponseMessage("An error has occured, please check your email and your password and try again")
+                }
+            })
+            .catch(err => console.error(err))
     }
 
     return (
@@ -39,7 +56,7 @@ function SignIn() {
                     <button onClick={login} className={styles.signInButton}>Sign In</button>
                     <Link to={'/sign-up'}>No account ?</Link>
                 </form>
-
+                <p>{responseMessage}</p>
             </section>
         </main>
     );
