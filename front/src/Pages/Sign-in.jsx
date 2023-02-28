@@ -28,7 +28,7 @@ function SignIn() {
                         .then(value => {
                             console.log(value)
                             localStorage.setItem("user", value.body.token)
-                            return navigate("/user")
+                            navigate("/user")
                         })
                 }
                 else {
