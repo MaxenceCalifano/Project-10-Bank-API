@@ -1,10 +1,27 @@
 import Account from '../components/Account';
 import styles from '../css/user.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Transaction from '../components/TransactionDropdown';
+import { useNavigate } from 'react-router';
 
 function User() {
     const [editName, toggleEdit] = useState(false);
+    const [user, setUser] = useState()
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        /**
+         * Look if there is an user loggedin, if yes store the token otherwise redirect to sigin page
+        */
+        const user = localStorage.getItem('user')
+
+        if (user) {
+            setUser(user)
+        } else {
+            navigate('/sign-in')
+        }
+    }, [navigate])
 
     return (
         <main className={styles.main}>
