@@ -1,6 +1,7 @@
 import styles from '../css/signIn.module.css'
 import userCircle from '../assets/account_circle.svg'
 import { Link, useNavigate } from 'react-router-dom'
+import { serviceAPI } from '../serviceAPI'
 
 import { useState } from 'react'
 
@@ -10,32 +11,20 @@ function SignIn() {
     const [password, setPassword] = useState('')
     const [responseMessage, setResponseMessage] = useState('')
 
+    const api = new serviceAPI()
+
     const navigate = useNavigate();
 
     const login = (e) => {
         e.preventDefault()
-        fetch("http://localhost:3001/api/v1/user/login", {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                "email": email,
-                "password": password
-            })
-        })
+        api.signIn(email, password)
             .then(res => {
-                if (res.ok) {
-                    res.json()
-                        .then(value => {
-                            console.log(value)
-                            localStorage.setItem("user", value.body.token)
-                            navigate("/user")
-                        })
-                }
-                else {
-                    setResponseMessage("An error has occured, please check your email and your password and try again")
-                }
+                localStorage.setItem("user", res.body.token)
+                navigate("/user")
             })
-            .catch(err => console.error(err))
+            .catch(() => {
+                setResponseMessage("An error has occured, please check your email and your password and try again")
+            })
     }
 
     return (
