@@ -1,5 +1,8 @@
 header {
     padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .argent {
@@ -8,4 +11,17 @@ header {
 
 .bank {
     color: var(--darker-primary);
+}
+
+.user a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    gap: 5px;
+}
+
+.user img {
+    width: 16px;
 }
