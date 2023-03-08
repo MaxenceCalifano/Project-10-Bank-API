@@ -1,7 +1,9 @@
 import styles from '../css/signIn.module.css'
 import userCircle from '../assets/account_circle.svg'
 import { Link, useNavigate } from 'react-router-dom'
-import { serviceAPI } from '../serviceAPI'
+
+import { useDispatch } from 'react-redux';
+import { signIn } from '../features/user/userSlice';
 
 import { useState } from 'react'
 
@@ -11,20 +13,12 @@ function SignIn() {
     const [password, setPassword] = useState('')
     const [responseMessage, setResponseMessage] = useState('')
 
-    const api = new serviceAPI()
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const login = (e) => {
         e.preventDefault()
-        api.signIn(email, password)
-            .then(res => {
-                localStorage.setItem("user", res.body.token)
-                navigate("/user")
-            })
-            .catch(() => {
-                setResponseMessage("An error has occured, please check your email and your password and try again")
-            })
+        dispatch(signIn({ email, password }))
     }
 
     return (
