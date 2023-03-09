@@ -10,38 +10,24 @@ const initialState = {
 export const signIn = createAsyncThunk(
     'user/signIn',
     async (credentials) => {
-        api.signIn(credentials.email, credentials.password)
+            return api.signIn(credentials.email, credentials.password)
+                .then(res => localStorage.setItem('user', res.body.token))
     }
   )
-
-/*   export const signIn = (credentials) => (dispatch) => {
-    dispatch(api.signIn(credentials.email, credentials.password))
-  } */
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {
-        /* extraReducers: (builder) => {
-            builder
-              .addCase(signIn.pending, (state) => {
-                state.status = 'loading';
-              })
-              .addCase(signIn.fulfilled, (state, action) => {
-               // state.status = 'idle';
-                //state.value += action.payload;
-                state.status = 'online';
-                state.user = "test"
-              });
-          } */},
+    /* reducers: {
+        }, */
           extraReducers: (builder) => {
             builder
               .addCase(signIn.pending, (state) => {
                 state.status = 'loading';
               })
-              .addCase(signIn.fulfilled, (state, action) => {
-                state.status = 'idle';
-                state.userStatus = 'online'
+              .addCase(signIn.fulfilled, (state) => {
+                    state.status = 'idle';
+                    state.userStatus = 'online' 
               })
               .addCase(signIn.rejected, (state) => {
                 state.status = 'error'

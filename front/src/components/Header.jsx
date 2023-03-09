@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import userCircle from '../assets/userCircle.png';
 
 function Header() {
-    const userStatus = useSelector(state => state.user.status)
+    const userStatus = useSelector(state => state.user.userStatus)
     console.log(userStatus)
 
     return (

@@ -1,26 +1,35 @@
 import styles from '../css/signIn.module.css'
 import userCircle from '../assets/account_circle.svg'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../features/user/userSlice';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function SignIn() {
+    // Get informed if a user is connected 
+    const userStatus = useSelector(state => state.user.userStatus)
+    const dispatch = useDispatch();
 
+    // STATE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [responseMessage, setResponseMessage] = useState('')
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    useEffect(() => {
+        userStatus === "error" ?
+            setResponseMessage("An error has occured, please check your email and your password and try again")
+            : setResponseMessage("")
+    }, [userStatus])
 
     const login = (e) => {
         e.preventDefault()
         dispatch(signIn({ email, password }))
     }
-
+    if (userStatus === "online") {
+        return <Navigate to="/user" />
+    }
     return (
         <main className={styles.bgBlack}>
             <section className={styles.signInContent}>
