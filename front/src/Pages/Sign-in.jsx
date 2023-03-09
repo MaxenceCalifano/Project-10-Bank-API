@@ -5,23 +5,20 @@ import { Link, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../features/user/userSlice';
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 function SignIn() {
     // Get informed if a user is connected 
     const userStatus = useSelector(state => state.user.userStatus)
+
+    //Used to detect error
+    const loginStatus = useSelector(state => state.user.status)
+
     const dispatch = useDispatch();
 
     // STATE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [responseMessage, setResponseMessage] = useState('')
-
-    useEffect(() => {
-        userStatus === "error" ?
-            setResponseMessage("An error has occured, please check your email and your password and try again")
-            : setResponseMessage("")
-    }, [userStatus])
 
     const login = (e) => {
         e.preventDefault()
@@ -48,7 +45,11 @@ function SignIn() {
                     <button onClick={login} className={styles.signInButton}>Sign In</button>
                     <Link to={'/sign-up'}>No account ?</Link>
                 </form>
-                <p>{responseMessage}</p>
+                <p>
+                    {
+                        loginStatus === "error" ? "An error has occured, please check your email and your password and try again" : ""
+                    }
+                </p>
             </section>
         </main>
     );
