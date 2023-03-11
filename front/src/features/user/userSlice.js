@@ -14,14 +14,24 @@ export const signIn = createAsyncThunk(
                 .then(res => localStorage.setItem('user', res.body.token))
     }
   )
+export const userProfile = createAsyncThunk(
+    'user/profile',
+    async () => {
+            return api.userProfile()
+               .then(res => console.log(res))
+              /*  .catch(err => {
+                return rejectWithValue(err)
+               }) */
+    }
+  )
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    /* reducers: {
-        }, */
+    reducers: {},
           extraReducers: (builder) => {
             builder
+            //Sign in
               .addCase(signIn.pending, (state) => {
                 state.status = 'loading';
               })
@@ -30,6 +40,13 @@ export const userSlice = createSlice({
                     state.userStatus = 'online' 
               })
               .addCase(signIn.rejected, (state) => {
+                state.status = 'error'
+              })
+              //User profile
+              .addCase(userProfile.fulfilled,(state) => {
+                state.name = "test"
+              })
+              .addCase(userProfile.rejected, (state) => {
                 state.status = 'error'
               })
           },

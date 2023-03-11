@@ -3,17 +3,22 @@ import styles from '../css/user.module.css'
 import { useState, useEffect } from 'react';
 import Transaction from '../components/TransactionDropdown';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { userProfile } from '../features/user/userSlice';
 
 function User() {
     const [editName, toggleEdit] = useState(false);
     const [user, setUser] = useState()
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
 
     useEffect(() => {
         /**
          * Look if there is an user loggedin, if yes store the token otherwise redirect to sigin page
         */
+        dispatch(userProfile())
+
         const user = localStorage.getItem('user')
 
         if (user) {
@@ -21,7 +26,7 @@ function User() {
         } else {
             navigate('/sign-in')
         }
-    }, [navigate])
+    }, [navigate, dispatch])
 
     return (
         <main className={styles.main}>
