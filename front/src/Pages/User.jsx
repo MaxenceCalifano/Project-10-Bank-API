@@ -39,12 +39,16 @@ function User() {
                 !editName ?
                     <button className={styles.editButton} onClick={() => toggleEdit(true)}>Edit Name</button>
                     :
-                    <>
-                        <input type="text" />
-                        <input type="text" />
-                        <button onClick={() => toggleEdit(false)}>save</button>
-                        <button onClick={() => toggleEdit(false)}>cancel</button>
-                    </>
+                    <div>
+                        <div className={styles.editInputs}>
+                            <input type="text" placeholder={user.userData.firstName} />
+                            <input type="text" placeholder={user.userData.lastName} />
+                        </div>
+                        <div className={styles.editButtons}>
+                            <button className={styles.editButton} onClick={() => toggleEdit(false)}>save</button>
+                            <button className={styles.editButton} onClick={() => toggleEdit(false)}>cancel</button>
+                        </div>
+                    </div>
             }
             <Account accountType="Argent Bank Checking (x8349)" balance="$2,082.79" balanceType="Available Balance" />
             <Account accountType="Argent Bank Savings (x6712)" balance="$10,928.42" balanceType="Available Balance" />
