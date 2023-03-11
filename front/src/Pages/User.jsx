@@ -17,9 +17,9 @@ function User() {
         /**
          * Look if there is an user loggedin, if yes store the token otherwise redirect to sigin page
         */
-        dispatch(userProfile())
-
         const user = localStorage.getItem('user')
+        dispatch(userProfile(user))
+
 
         if (user) {
             setUser(user)

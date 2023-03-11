@@ -16,12 +16,13 @@ export const signIn = createAsyncThunk(
   )
 export const userProfile = createAsyncThunk(
     'user/profile',
-    async () => {
-            return api.userProfile()
-               .then(res => console.log(res))
-              /*  .catch(err => {
-                return rejectWithValue(err)
-               }) */
+    async (user) => {
+        const response = await api.userProfile(user)
+        console.log("🚀 ~ file: userSlice.js:21 ~ response:", response)
+        
+        return response.body
+            /* return api.userProfile(user)
+               .then(res => console.log(res)) */
     }
   )
 
@@ -43,8 +44,8 @@ export const userSlice = createSlice({
                 state.status = 'error'
               })
               //User profile
-              .addCase(userProfile.fulfilled,(state) => {
-                state.name = "test"
+              .addCase(userProfile.fulfilled,(state, action) => {
+                state.name = action.payload
               })
               .addCase(userProfile.rejected, (state) => {
                 state.status = 'error'
