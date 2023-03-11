@@ -1,7 +1,6 @@
 import Account from '../components/Account';
 import styles from '../css/user.module.css'
 import { useState, useEffect } from 'react';
-import Transaction from '../components/TransactionDropdown';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { userProfile } from '../features/user/userSlice';
@@ -50,7 +49,6 @@ function User() {
             <Account accountType="Argent Bank Checking (x8349)" balance="$2,082.79" balanceType="Available Balance" />
             <Account accountType="Argent Bank Savings (x6712)" balance="$10,928.42" balanceType="Available Balance" />
             <Account accountType="Argent Bank Credit Card (x8349)" balance="$184.30" balanceType="Current Balance" />
-            <Transaction />
         </main>
     );
 }
