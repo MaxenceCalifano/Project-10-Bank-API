@@ -8,25 +8,21 @@ import { userProfile } from '../features/user/userSlice';
 
 function User() {
     const [editName, toggleEdit] = useState(false);
-    const [user, setUser] = useState()
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         /**
-         * Look if there is an user loggedin, if yes store the token otherwise redirect to sigin page
+         * Look if there is an user loggedin, if yes get information otherwise redirect to sign-in page
         */
-        const user = localStorage.getItem('user')
-        dispatch(userProfile(user))
-
-
-        if (user) {
-            setUser(user)
-        } else {
+        if (user.userStatus === "offline") {
             navigate('/sign-in')
         }
-    }, [navigate, dispatch])
+        const key = localStorage.getItem('user')
+        dispatch(userProfile(key))
+    }, [dispatch, navigate, user.userStatus])
 
     return (
         <main className={styles.main}>
