@@ -21,12 +21,21 @@ function User() {
             navigate('/sign-in')
         }
         const key = localStorage.getItem('user')
+        /**
+         * fetch user to backend and store datas to redu store
+         * key argument is the JWT token
+         */
         dispatch(userProfile(key))
+
     }, [dispatch, navigate, user.userStatus])
+
+    if (user.status === "loading" || user.userData === undefined) {
+        return <p>Loading...</p>
+    }
 
     return (
         <main className={styles.main}>
-            <h1 className={styles.h1}>Welcome back {/*user */}!</h1>
+            <h1 className={styles.h1}>Welcome back {user.userData.firstName} {user.userData.lastName}!</h1>
             {
                 !editName ?
                     <button className={styles.editButton} onClick={() => toggleEdit(true)}>Edit Name</button>
