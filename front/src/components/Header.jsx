@@ -18,7 +18,7 @@ function Header() {
             <h1><Link to={'/'}><span className={styles.argent}>ARGENT</span><span className={styles.bank}>BANK</span></Link></h1>
             <div className={styles.user}>
                 {
-                    user.userStatus === 'offline' || user.userStatus === 'loading' ?
+                    user.userStatus !== "online" ?
                         <Link to="sign-in">
                             <img src={userCircle} alt="" />
                             <p>Sign In</p>
@@ -27,7 +27,7 @@ function Header() {
                         <nav className={styles.userNav}>
                             <Link to={"/user"}>
                                 <img src={userCircle} alt="" />
-                                {user.userData.firstName}
+                                {user.userData !== undefined ? user.userData.firstName : ""}
                             </Link>
 
                             <Link to={"/"} onClick={() => dispatch(signOut())}>
