@@ -16,8 +16,8 @@ export const signIn = createAsyncThunk(
   )
 export const userProfile = createAsyncThunk(
     'user/profile',
-    async (user) => {
-        const response = await api.userProfile(user)
+    async () => {
+        const response = await api.userProfile()
         console.log("🚀 ~ file: userSlice.js:21 ~ response:", response)
         
         return response.body

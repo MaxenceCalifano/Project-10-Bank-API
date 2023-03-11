@@ -19,12 +19,10 @@ function User() {
         if (user.userStatus === "offline") {
             navigate('/sign-in')
         }
-        const key = localStorage.getItem('user')
         /**
-         * fetch user to backend and store datas to redu store
-         * key argument is the JWT token
+         * fetch user to backend and store datas to redux store
          */
-        dispatch(userProfile(key))
+        dispatch(userProfile())
 
     }, [dispatch, navigate, user.userStatus])
 

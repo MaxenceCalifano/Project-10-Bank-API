@@ -13,11 +13,11 @@ export class serviceAPI {
     //    )
     }
 
-    userProfile = async (user) => {
+    userProfile = async () => {
         return fetch("http://localhost:3001/api/v1/user/profile", {
             method: 'POST',
             headers: {
-                        "Authorization": `Bearer ${user}` 
+                        "Authorization": `Bearer ${localStorage.getItem('user')}` 
             },
         })
         .then( res => res.json())
