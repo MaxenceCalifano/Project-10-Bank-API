@@ -47,7 +47,9 @@ function User() {
                         <button onClick={() => toggleEdit(false)}>cancel</button>
                     </>
             }
-            <Account />
+            <Account accountType="Argent Bank Checking (x8349)" balance="$2,082.79" balanceType="Available Balance" />
+            <Account accountType="Argent Bank Savings (x6712)" balance="$10,928.42" balanceType="Available Balance" />
+            <Account accountType="Argent Bank Credit Card (x8349)" balance="$184.30" balanceType="Current Balance" />
             <Transaction />
         </main>
     );
