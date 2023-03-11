@@ -25,3 +25,8 @@ header {
 .user img {
     width: 16px;
 }
+
+.userNav {
+    display: flex;
+    gap: 10px;
+}
