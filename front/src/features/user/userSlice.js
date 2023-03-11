@@ -25,6 +25,17 @@ export const userProfile = createAsyncThunk(
                .then(res => console.log(res)) */
     }
   )
+export const updateProfile = createAsyncThunk(
+    'user/profile',
+    async (data) => {
+        console.log("data",data)
+        const response = await api.updateProfile(data.firstName, data.lastName)
+
+        return response.body
+            /* return api.userProfile(user)
+               .then(res => console.log(res)) */
+    }
+  )
 
 export const userSlice = createSlice({
     name: 'user',

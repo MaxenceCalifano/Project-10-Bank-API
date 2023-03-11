@@ -14,11 +14,28 @@ export class serviceAPI {
     }
 
     userProfile = async () => {
-        return fetch("http://localhost:3001/api/v1/user/profile", {
+        return this.defered(fetch("http://localhost:3001/api/v1/user/profile", {
             method: 'POST',
             headers: {
                         "Authorization": `Bearer ${localStorage.getItem('user')}` 
             },
+        })
+        .then( res => res.json()))
+        //.catch(err => console.error(err))
+    }
+    updateProfile = async (firstName, lastName) => {
+        console.log("🚀 ~ file: serviceAPI.js:27 ~ serviceAPI ~ updateProfile= ~ firstName:", firstName, lastName)
+        
+        return fetch("http://localhost:3001/api/v1/user/profile", {
+            method: 'PUT',
+            headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem('user')}` 
+            },
+            body: JSON.stringify({
+                "firstName": firstName,
+                "lastName": lastName
+            })
         })
         .then( res => res.json())
         //.catch(err => console.error(err))

@@ -3,10 +3,12 @@ import styles from '../css/user.module.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { userProfile } from '../features/user/userSlice';
+import { userProfile, updateProfile } from '../features/user/userSlice';
 
 function User() {
     const [editName, toggleEdit] = useState(false);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -39,11 +41,15 @@ function User() {
                     :
                     <div>
                         <div className={styles.editInputs}>
-                            <input type="text" placeholder={user.userData.firstName} />
-                            <input type="text" placeholder={user.userData.lastName} />
+                            <input type="text" placeholder={user.userData.firstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <input type="text" placeholder={user.userData.lastName} onChange={(e) => setLastName(e.target.value)} />
                         </div>
                         <div className={styles.editButtons}>
-                            <button className={styles.editButton} onClick={() => toggleEdit(false)}>save</button>
+                            <button className={styles.editButton} onClick={() => {
+                                console.log(firstName)
+                                dispatch(updateProfile({ firstName, lastName }))
+                                toggleEdit(false)
+                            }}>save</button>
                             <button className={styles.editButton} onClick={() => toggleEdit(false)}>cancel</button>
                         </div>
                     </div>
