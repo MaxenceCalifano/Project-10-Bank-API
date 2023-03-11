@@ -2,10 +2,15 @@ import styles from '../css/header.module.css'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import userCircle from '../assets/userCircle.png';
-import signOut from '../assets/signOut.png';
+import signOutIcon from '../assets/signOut.png';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../features/user/userSlice';
+
 
 function Header() {
     const user = useSelector(state => state.user)
+    const dispatch = useDispatch();
+
     console.log(user)
 
     return (
@@ -13,7 +18,7 @@ function Header() {
             <h1><Link to={'/'}><span className={styles.argent}>ARGENT</span><span className={styles.bank}>BANK</span></Link></h1>
             <div className={styles.user}>
                 {
-                    user.userStatus === 'offline' ?
+                    user.userStatus === 'offline' || user.userStatus === 'loading' ?
                         <Link to="sign-in">
                             <img src={userCircle} alt="" />
                             <p>Sign In</p>
@@ -25,8 +30,8 @@ function Header() {
                                 {user.userData.firstName}
                             </Link>
 
-                            <Link to={"/"}>
-                                <img src={signOut} alt="" />
+                            <Link to={"/"} onClick={() => dispatch(signOut())}>
+                                <img src={signOutIcon} alt="" />
                                 <p>Sign Out</p>
                             </Link>
 

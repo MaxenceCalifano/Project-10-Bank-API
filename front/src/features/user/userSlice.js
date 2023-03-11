@@ -29,7 +29,13 @@ export const userProfile = createAsyncThunk(
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        signOut: (state) => {
+            state.userStatus = "offline";
+            state.userData = "";
+            localStorage.removeItem('user')
+        }
+    },
           extraReducers: (builder) => {
             builder
             //Sign in
@@ -54,4 +60,5 @@ export const userSlice = createSlice({
     
 })
 
+export const {signOut} = userSlice.actions;
 export default userSlice.reducer;
