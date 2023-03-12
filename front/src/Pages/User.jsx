@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { userProfile, updateProfile } from '../features/user/userSlice';
+import Loader from '../components/Loader';
 
 function User() {
     const [editName, toggleEdit] = useState(false);
@@ -29,7 +30,7 @@ function User() {
     }, [dispatch, navigate, user.userStatus])
 
     if (user.status === "loading" || user.userData === undefined) {
-        return <p>Loading...</p>
+        return <Loader />
     }
 
     return (
