@@ -21,10 +21,8 @@ export class serviceAPI {
             },
         })
         .then( res => res.json()))
-        //.catch(err => console.error(err))
     }
     updateProfile = async (firstName, lastName) => {
-        console.log("🚀 ~ file: serviceAPI.js:27 ~ serviceAPI ~ updateProfile= ~ firstName:", firstName, lastName)
         
         return fetch("http://localhost:3001/api/v1/user/profile", {
             method: 'PUT',
@@ -49,5 +47,3 @@ export class serviceAPI {
         })
     }
 }
-
-//`Bearer ${localStorage.getItem('user')}` 
