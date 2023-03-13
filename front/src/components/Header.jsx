@@ -11,8 +11,6 @@ function Header() {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch();
 
-    console.log(user)
-
     return (
         <header>
             <h1><Link to={'/'}><span className={styles.argent}>ARGENT</span><span className={styles.bank}>BANK</span></Link></h1>

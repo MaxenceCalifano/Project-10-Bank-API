@@ -10,11 +10,11 @@ function User() {
     const [editName, toggleEdit] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [nameUpdated, setNameUpdated] = useState("");
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
-    const nameUpdated = useSelector(state => state.user.updated)
 
     useEffect(() => {
         /**
@@ -49,13 +49,15 @@ function User() {
                         <div className={styles.editButtons}>
                             <button className={styles.editButton} onClick={() => {
                                 dispatch(updateProfile({ firstName, lastName }))
+                                    .then(() => setNameUpdated("Your name has been updated"))
+                                    .catch(err => setNameUpdated("There was error while updating your name, please try again later"))
                                 toggleEdit(false)
                             }}>save</button>
                             <button className={styles.editButton} onClick={() => toggleEdit(false)}>cancel</button>
                         </div>
                     </div>
             }
-            <p style={{ color: "white" }}>{nameUpdated ? "Your name has been updated" : ""}</p>
+            <p style={{ color: "white" }}>{nameUpdated}</p>
             <Account accountType="Argent Bank Checking (x8349)" balance="$2,082.79" balanceType="Available Balance" />
             <Account accountType="Argent Bank Savings (x6712)" balance="$10,928.42" balanceType="Available Balance" />
             <Account accountType="Argent Bank Credit Card (x8349)" balance="$184.30" balanceType="Current Balance" />

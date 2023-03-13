@@ -5,7 +5,6 @@ const api = new serviceAPI()
 
 const initialState = {
     userStatus: "offline",
-    updated: false,
 };
 
 export const signIn = createAsyncThunk(
@@ -69,7 +68,6 @@ export const userSlice = createSlice({
               })
               // Update profile
               .addCase(updateProfile.fulfilled, (state,action) => {
-                state.updated = true
                 state.userData.firstName = action.payload.firstName
                 state.userData.lastName = action.payload.lastName
               })
