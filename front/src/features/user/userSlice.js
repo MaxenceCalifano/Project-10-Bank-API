@@ -57,6 +57,7 @@ export const userSlice = createSlice({
               //User profile
               .addCase(userProfile.fulfilled,(state, action) => {
                 state.userData = action.payload
+                state.userStatus = 'online' 
               })
               // Update profile
               .addCase(updateProfile.fulfilled, (state,action) => {

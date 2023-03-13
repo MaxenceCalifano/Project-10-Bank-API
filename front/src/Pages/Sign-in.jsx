@@ -24,6 +24,7 @@ function SignIn() {
         e.preventDefault()
         dispatch(signIn({ email, password }))
     }
+
     if (userStatus === "online") {
         return <Navigate to="/user" />
     }
