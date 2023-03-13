@@ -36,7 +36,6 @@ export class serviceAPI {
             })
         })
         .then( res => res.json())
-        //.catch(err => console.error(err))
     }
 
     defered = (data) => {
