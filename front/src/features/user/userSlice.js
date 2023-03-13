@@ -68,8 +68,10 @@ export const userSlice = createSlice({
                 state.userStatus = 'error'
               })
               // Update profile
-              .addCase(updateProfile.fulfilled, (state) => {
+              .addCase(updateProfile.fulfilled, (state,action) => {
                 state.updated = true
+                state.userData.firstName = action.payload.firstName
+                state.userData.lastName = action.payload.lastName
               })
           },
     
