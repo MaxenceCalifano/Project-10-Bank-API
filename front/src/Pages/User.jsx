@@ -14,6 +14,7 @@ function User() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
+    const updated = useSelector(state => state.user.updated)
 
     useEffect(() => {
         /**
@@ -47,7 +48,6 @@ function User() {
                         </div>
                         <div className={styles.editButtons}>
                             <button className={styles.editButton} onClick={() => {
-                                console.log(firstName)
                                 dispatch(updateProfile({ firstName, lastName }))
                                 toggleEdit(false)
                             }}>save</button>
@@ -55,6 +55,7 @@ function User() {
                         </div>
                     </div>
             }
+            <p style={{ color: "white" }}>{updated ? "Your name has been updated" : ""}</p>
             <Account accountType="Argent Bank Checking (x8349)" balance="$2,082.79" balanceType="Available Balance" />
             <Account accountType="Argent Bank Savings (x6712)" balance="$10,928.42" balanceType="Available Balance" />
             <Account accountType="Argent Bank Credit Card (x8349)" balance="$184.30" balanceType="Current Balance" />

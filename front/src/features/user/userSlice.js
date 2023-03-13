@@ -4,7 +4,8 @@ import { serviceAPI } from '../../serviceAPI';
 const api = new serviceAPI()
 
 const initialState = {
-    userStatus: "offline"
+    userStatus: "offline",
+    updated: false,
 };
 
 export const signIn = createAsyncThunk(
@@ -18,7 +19,6 @@ export const userProfile = createAsyncThunk(
     'user/profile',
     async () => {
         const response = await api.userProfile()
-        console.log("🚀 ~ file: userSlice.js:21 ~ response:", response)
         
         return response.body
             /* return api.userProfile(user)
@@ -26,7 +26,7 @@ export const userProfile = createAsyncThunk(
     }
   )
 export const updateProfile = createAsyncThunk(
-    'user/profile',
+    'user/updateProfile',
     async (data) => {
         console.log("data",data)
         const response = await api.updateProfile(data.firstName, data.lastName)
@@ -64,8 +64,12 @@ export const userSlice = createSlice({
               .addCase(userProfile.fulfilled,(state, action) => {
                 state.userData = action.payload
               })
-              .addCase(userProfile.rejected, (state) => {
-                state.status = 'error'
+             .addCase(userProfile.rejected, (state) => {
+                state.userStatus = 'error'
+              })
+              // Update profile
+              .addCase(updateProfile.fulfilled, (state) => {
+                state.updated = true
               })
           },
     

@@ -10,7 +10,7 @@ export class serviceAPI {
             })
         })
         .then( res => res.json())
-    //    )
+       // )
     }
 
     userProfile = async () => {
