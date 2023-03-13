@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { userProfile } from '../features/user/userSlice';
 import { useDispatch } from 'react-redux';
 
-
 function Root() {
     const styles = {
         body: {
@@ -19,7 +18,6 @@ function Root() {
 
     useEffect(() => {
         if (localStorage.getItem("user")) {
-            console.log("there an user")
             dispatch(userProfile())
         }
     })

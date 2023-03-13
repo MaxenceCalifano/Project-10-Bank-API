@@ -30,6 +30,7 @@ function User() {
 
     }, [dispatch, navigate, user.userStatus])
 
+
     if (user.status === "loading" || user.userData === undefined) {
         return <Loader />
     }
