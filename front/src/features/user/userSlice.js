@@ -20,19 +20,14 @@ export const userProfile = createAsyncThunk(
         const response = await api.userProfile()
         
         return response.body
-            /* return api.userProfile(user)
-               .then(res => console.log(res)) */
     }
   )
 export const updateProfile = createAsyncThunk(
     'user/updateProfile',
     async (data) => {
-        console.log("data",data)
         const response = await api.updateProfile(data.firstName, data.lastName)
 
         return response.body
-            /* return api.userProfile(user)
-               .then(res => console.log(res)) */
     }
   )
 
