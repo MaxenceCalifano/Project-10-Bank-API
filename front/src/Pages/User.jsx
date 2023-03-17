@@ -1,36 +1,30 @@
 import Account from '../components/Account';
 import styles from '../css/user.module.css'
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { Navigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { userProfile, updateProfile } from '../features/user/userSlice';
 import Loader from '../components/Loader';
-
 function User() {
     const [editName, toggleEdit] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [nameUpdated, setNameUpdated] = useState("");
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
 
     useEffect(() => {
         /**
-         * Look if there is an user loggedin, if yes get information otherwise redirect to sign-in page
-        */
-        if (user.userStatus === "offline") {
-            navigate('/sign-in')
-        }
-        /**
          * fetch user to backend and store datas to redux store
          */
         dispatch(userProfile())
 
-    }, [dispatch, navigate, user.userStatus])
+    }, [dispatch])
 
-
+    if (user.userStatus !== "online") {
+        return <Navigate to="/sign-in" />
+    }
     if (user.status === "loading" || user.userData === undefined) {
         return <Loader />
     }

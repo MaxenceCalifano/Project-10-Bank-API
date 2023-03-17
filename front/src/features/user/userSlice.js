@@ -59,6 +59,9 @@ export const userSlice = createSlice({
                 state.userData = action.payload
                 state.userStatus = 'online' 
               })
+              .addCase(userProfile.rejected, (state) => {
+                state.userStatus = 'error'
+              })
               // Update profile
               .addCase(updateProfile.fulfilled, (state,action) => {
                 state.userData.firstName = action.payload.firstName

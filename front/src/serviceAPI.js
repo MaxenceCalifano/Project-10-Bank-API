@@ -21,6 +21,10 @@ export class serviceAPI {
             },
         })
         .then( res => res.json()))
+        .then(res => {
+            if(res.status === 200) return res
+            return Promise.reject()
+        })
     }
     updateProfile = async (firstName, lastName) => {
         
